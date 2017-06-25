@@ -8,22 +8,26 @@ class SearchBar extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = { term: "" };
+    this.state={term: ''};
   }
 
   render () {
     return (
-      <div>
-        <input
-          value = { this.state.term }
-          onChange = { event => this.setState({ term: event.target.value }) } />
+      <div className='input-group input-group-lg search-bar-container'>
+        <input type='text'
+               className='form-control search-bar--input'
+               placeholder='VideoName'
+               aria-describedby='sizing-addon1'
+               value={this.state.term}
+               onChange={event => this.onInputTermChange(event.target.value)} />
       </div>
-    )
+    );
   }
 
-  // onInputChange (event) {
-  //   console.log(event.target.value)
-  // }
+  onInputTermChange (term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term);
+  }
 }
 
 export default SearchBar;
